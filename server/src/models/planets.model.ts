@@ -1,4 +1,3 @@
-import { error } from "console";
 import { parse } from "csv-parse";
 import * as fs from "fs";
 import path from "path";

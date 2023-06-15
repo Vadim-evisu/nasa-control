@@ -2,13 +2,17 @@ interface ILaunch {
   flightNumber: number;
   mission: string;
   rocket: string;
-  launchTime: Date;
+  launchDate: Date;
   destination: string;
-  customer: string[];
+  customers: string[];
   upcoming: boolean;
   success: boolean;
 }
 
+type ILaunchNewItem = Pick<ILaunch, "mission" | "rocket" | "destination"> & {
+  launchDate: string;
+};
+
 type ILaunchesList = Map<number, ILaunch>;
 
-export { ILaunch, ILaunchesList };
+export { ILaunch, ILaunchesList, ILaunchNewItem };

@@ -30,7 +30,10 @@ const loadPlanetsData = () => {
         })
       )
       .on("data", (item) => {
-        if (isHabitablePlanet(item)) records.push(item);
+        if (isHabitablePlanet(item)) {
+          console.log(item.kepid);
+          records.push(item);
+        }
       })
       .on("error", (error) => {
         console.error(error);
@@ -45,4 +48,10 @@ const loadPlanetsData = () => {
   });
 };
 
-export { records as planets, loadPlanetsData };
+const getAllPlanets = () => {
+  return records.filter(
+    (item, idx) => records.findIndex((obj) => obj.kepid === item.kepid) === idx
+  );
+};
+
+export { getAllPlanets, loadPlanetsData };

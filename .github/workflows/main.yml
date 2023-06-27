@@ -21,8 +21,5 @@ jobs:
       - name: NPM install
         run: npm install
 
-      - name: NPM react-scripts
-        run: npm install react-scripts
-
       - name: Build
         run: npm run build --prefix client

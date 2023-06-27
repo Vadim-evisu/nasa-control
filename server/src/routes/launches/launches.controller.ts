@@ -1,13 +1,24 @@
 import { Request, Response } from "express";
-import { LaunchModel } from "./../../models/launches.model.js";
+import {
+  LaunchModel,
+  loadLaunchesData,
+} from "./../../models/launches.model.js";
 import { ILaunch } from "../../types/launch.type.js";
 import { executeValidateMiddleWare } from "../../common/validate.middleware.js";
 import { addLaunchDto } from "../../services/dto/add-launch.dto.js";
 
 const LaunchRepo = new LaunchModel();
 
-const httpGetAllLaunches = (req: Request, res: Response) => {
-  return res.status(200).json(LaunchRepo.getStorageList());
+const getLaunchesFromRepo = () => {
+  return LaunchRepo.getStorageList();
+};
+const item = await loadLaunchesData();
+LaunchRepo.addItem(item);
+
+const httpGetAllLaunches = async (req: Request, res: Response) => {
+  console.log("httpGetAllLaunches");
+  // return res.status(200).json(item);
+  return res.status(200).json(getLaunchesFromRepo());
 };
 
 const httAddLaunchMiddlewares = [executeValidateMiddleWare(addLaunchDto)];

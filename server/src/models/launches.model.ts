@@ -2,16 +2,16 @@ import { ILaunch, ILaunchesList } from "./../types/launch.type.js";
 
 // const launches: ILaunchesList = new Map();
 
-// const launchItem: ILaunch = {
-//   flightNumber: 100,
-//   mission: "Keppler",
-//   rocket: "Dragon",
-//   launchDate: new Date("December 26, 2040"),
-//   destination: "Kepler-442",
-//   customers: ["SpaceX"],
-//   upcoming: true,
-//   success: false,
-// };
+const launchItem: ILaunch = {
+  flightNumber: 100,
+  mission: "Keppler",
+  rocket: "Dragon",
+  launchDate: new Date("December 26, 2040"),
+  destination: "Kepler-442",
+  customers: ["SpaceX"],
+  upcoming: true,
+  success: false,
+};
 
 class LaunchModel {
   #storage: ILaunchesList;
@@ -75,7 +75,39 @@ class LaunchModel {
 }
 
 async function loadLaunchesData() {
-  console.log("Loading Launch Data");
+  return launchItem;
 }
+
+// async function loadLaunchesData() {
+//   const SPACEX_API_URI = "https://api.spacexdata.com/v5/launches/query";
+//   console.log("Loading Launch Data");
+//   try {
+//     const res = await fetch(SPACEX_API_URI, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         query: {},
+//         options: {
+//           populate: [
+//             {
+//               path: "rocket",
+//               select: {
+//                 name: 1,
+//               },
+//             },
+//           ],
+//         },
+//       }),
+//     });
+//     const data = await res.json();
+//     const firstRocket = data.docs[0];
+//     console.log(firstRocket);
+//     return firstRocket;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 export { LaunchModel, loadLaunchesData };

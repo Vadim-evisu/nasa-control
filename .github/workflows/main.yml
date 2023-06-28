@@ -6,13 +6,8 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  CI: true
-
 jobs:
   build:
-    env:
-      CI: true
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -33,4 +28,4 @@ jobs:
         run: npm run build --prefix client
 
       - name: Run Test
-        run: npm run test
+        run: CI=true npm run test
